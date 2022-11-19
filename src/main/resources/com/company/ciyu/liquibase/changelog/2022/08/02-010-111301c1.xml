@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="ciyu">
+        <addColumn tableName="USER">
+            <column name="CREATED_DATE" type="DATE"/>
+            <column name="LAST_MODIFIED_DATE" type="DATE"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="2" author="ciyu">
+        <dropColumn columnName="CREATE_TIME" tableName="USER"/>
+    </changeSet>
+</databaseChangeLog>

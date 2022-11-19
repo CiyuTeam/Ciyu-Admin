@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="ciyu">
+        <createTable tableName="PHONETIC">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PHONETIC"/>
+            </column>
+            <column name="LOCALE" type="VARCHAR(255)"/>
+            <column name="SYMBOL" type="VARCHAR(255)"/>
+            <column name="AUDIO" type="VARCHAR(255)"/>
+            <column name="WORD_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="ciyu">
+        <createIndex indexName="IDX_PHONETIC_WORD_ID" tableName="PHONETIC">
+            <column name="WORD_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="WORD_ID" baseTableName="PHONETIC" constraintName="FK_PHONETIC_ON_WORD"
+                                 referencedColumnNames="ID" referencedTableName="WORD"/>
+    </changeSet>
+</databaseChangeLog>
